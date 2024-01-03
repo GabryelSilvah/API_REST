@@ -14,10 +14,12 @@ Esse é um projeto de API REST que está sendo desenvolvida em PHP puro. Os verb
   <tr>
     <td>GET</td>
     <td>http://localhost/users</td>
+    <td>Lista todos os usuários</td>
   </tr>
   <tr>
     <td>GET</td>
     <td>http://localhost/users/{id}</td>
+    <td>Faz a busca específica usuário</td>
   </tr>
   <tr>
     <td>POST</td>
