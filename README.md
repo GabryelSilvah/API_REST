@@ -1,5 +1,6 @@
 # API REST
 > status: em desenvolvimento
+
 > documentação: [API_REST](https://documenter.getpostman.com/view/32073946/2s9YsFDtnU)
 
 ## Sobre
