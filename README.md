@@ -9,7 +9,7 @@ Esse é um projeto de API REST que está sendo desenvolvida em PHP puro. Os verb
 ##Request
 <table>
   <tr>
-    <th>Verbos</th><th>uri(Rotas)</th><th>Response</th>
+    <th>Verbos</th><th>Rotas</th><th>Response</th>
   </tr>
   <tr>
     <td>GET</td>
