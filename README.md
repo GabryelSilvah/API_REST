@@ -21,11 +21,14 @@ Esse é um projeto de API REST que está sendo desenvolvida em PHP puro. Os verb
   </tr>
   <tr>
     <td>POST</td>
+    <td>/users</td>
   </tr>
   <tr>
     <td>PUT</td>
+    <td>/users/{id}</td>
   </tr>
   <tr>
     <td>DELETE</td>
+    <td>/users/{id}</td>
   </tr>
 </table>
