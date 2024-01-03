@@ -4,7 +4,7 @@
 > Documentação: [API_REST](https://documenter.getpostman.com/view/32073946/2s9YsFDtnU)
 
 ## Sobre
-Esse é um projeto de API REST que está sendo desenvolvida em PHP puro. Os verbos http que estão sendo implementados é o GET, POST e DELETE. Com o método GET a API realiza uma conexão com o banco de dados e retorna em formato JSON dados de funcionários registrados. Já com o método POST é possível cadastrar um novo funcionário.
+API REST de registro de usuários de uma empresa. Os verbos http disponíveis nessa API são, GET, POST, PUT e DELETE. O GET retorna um JSON com a lista de usuários castrados, com nome e cargo desse funcionário. Com o POST é possível cadastrar um novo funcionário. O PUT você pode atualizar os dados já cadastrados do usuário. E com o DELETE é possível deletar o cadastro do usuário.
 
 ## Request
 <table>
