@@ -17,6 +17,7 @@ Esse é um projeto de API REST que está sendo desenvolvida em PHP puro. Os verb
   </tr>
   <tr>
     <td>GET</td>
+    <td>/users/{id}</td>
   </tr>
   <tr>
     <td>POST</td>
