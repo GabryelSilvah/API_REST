@@ -11,4 +11,20 @@ Esse é um projeto de API REST que está sendo desenvolvida em PHP puro. Os verb
   <tr>
     <th>Verbos</th><th>uri(Rotas)</th><th>Response</th>
   </tr>
+  <tr>
+    <td>GET</td>
+    <td>/users</td>
+  </tr>
+  <tr>
+    <td>GET</td>
+  </tr>
+  <tr>
+    <td>POST</td>
+  </tr>
+  <tr>
+    <td>PUT</td>
+  </tr>
+  <tr>
+    <td>DELETE</td>
+  </tr>
 </table>
