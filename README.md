@@ -14,26 +14,26 @@ Esse é um projeto de API REST que está sendo desenvolvida em PHP puro. Os verb
   <tr>
     <td>GET</td>
     <td>http://localhost/users</td>
-    <td>Lista todos os usuários</td>
+    <td>Listar todos os usuários</td>
   </tr>
   <tr>
     <td>GET</td>
     <td>http://localhost/users/{id}</td>
-    <td>Faz a busca específica do usuário</td>
+    <td>Fazer a busca específica do usuário</td>
   </tr>
   <tr>
     <td>POST</td>
     <td>http://localhost/users</td>
-    <td>Cadastra um no usuáio</td>
+    <td>Cadastrar um novo usuáio</td>
   </tr>
   <tr>
     <td>PUT</td>
     <td>http://localhost/users/{id}</td>
-    <td>Atualiza os dados do usuário</td>
+    <td>Atualizar os dados do usuário</td>
   </tr>
   <tr>
     <td>DELETE</td>
     <td>http://localhost/users/{id}</td>
-    <td>Deleta o usuário</td>
+    <td>Deletar o usuário</td>
   </tr>
 </table>
