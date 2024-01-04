@@ -9,14 +9,21 @@ class DeleteUser
         $model = $model->delete($id);
 
         $status = new Status;
-        if ($model == true) {
-            $data = $status->successful();
-            $data['messenger'] =  "successfully deleted";
-        } else if ($model == false) {
-            $data = $status->notFound();
-            $data['messenger'] =  "User not found";
+        
+        if ($model['deleted'] == true) {
+            $data = $status->status200();
+            $data['detail'] =  "sucesso, usuário deletado";
+            $data['name'] = $model['name'];
+            $data['id'] = $model['id'];
+            $data['deleted'] = $model['deleted'];
+            echo json_encode($data);
+        } else if ($model['deleted'] == false) {
+            $data = $status->status400();
+            $data['detail'] =  "falha, usuário não encontrado";
+            $data['deleted'] = $model['deleted'];
+            echo json_encode($data);
         }
 
-        echo json_encode($data);
+        
     }
 }

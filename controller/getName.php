@@ -12,11 +12,12 @@ class SearchName
         
         $status = new Status;
         if (!$model == null) {
-            $data = $status->successful();
-            $data['Results'] = $model;
+            $data = $status->status200();
+            $data['detail'] = "sucesso, usuário encontrado";
+            $data['results'] = $model;
         } else {
-            $data = $status->notFound();
-            
+            $data = $status->status404();
+            $data['detail'] = "falha, usuário não encontrado";
         }
 
         echo  json_encode($data);

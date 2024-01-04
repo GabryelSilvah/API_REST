@@ -5,41 +5,51 @@ class Status
     private $data = [];
 
 
-    function successful()
+    function status200()
     {
         $this->data = [
             "status" => 200,
-            "messenger" => "ok"
+            "message" => "Ok"
         ];
 
         return $this->data;
     }
 
-    function create()
+    function status201()
     {
         $this->data = [
             "status" => 201,
-            "messenger" => "user created"
+            "message" => "Created"
         ];
 
         return $this->data;
     }
 
-    function notFound()
+    function status400()
+    {
+        $this->data = [
+            "status" => 400,
+            "message" => "Bad Request"
+        ];
+
+        return $this->data;
+    }
+
+    function status404()
     {
         $this->data = [
             "status" => 404,
-            "messenger" => "not found"
+            "message" => "Not found"
         ];
 
         return $this->data;
     }
 
-    function notImplemented()
+    function status501()
     {
         $this->data = [
             "status" => 501,
-            "messenger" => "not implemented"
+            "message" => "Not implemented"
         ];
 
         return $this->data;
