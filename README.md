@@ -26,7 +26,7 @@ API REST de registro de usuários de uma empresa. Os verbos http disponíveis ne
   <tr>
     <td>POST</td>
     <td>http://localhost/users</td>
-    <td>Cadastrar um novo usuáio</td>
+    <td>Cadastrar um novo usuário</td>
   </tr>
   <tr>
     <td>PUT</td>
