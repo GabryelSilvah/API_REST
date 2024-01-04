@@ -13,7 +13,7 @@ class Conexao
         $local = "localhost";
         $usuario = "root";
         $senha = "";
-        $nomeBanco = "dbClientes";
+        $nomeBanco = "dbUsers";
 
         $mysqli = mysqli_connect($local, $usuario, $senha, $nomeBanco);
 
