@@ -1,5 +1,5 @@
 # API REST
-> Status: Concluído
+> Status: update
 
 > Documentação: [API_REST](https://documenter.getpostman.com/view/32073946/2s9YsFDtnU)
 
