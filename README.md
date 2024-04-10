@@ -35,7 +35,7 @@ API REST de registro de usuários de uma empresa. Os verbos http disponíveis ne
   </tr>
   <tr>
     <td>DELETE</td>
-    <td>http://localhost/delet_users/{id}</td>
+    <td>http://localhost/delete_users/{id}</td>
     <td>Deletar o usuário</td>
   </tr>
 </table>
