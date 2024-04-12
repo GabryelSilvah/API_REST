@@ -1,7 +1,7 @@
 # API REST
-> Status: Concluído
+> Status: update
 
-> Documentação: [API_REST](https://documenter.getpostman.com/view/32073946/2s9YsFDtnU)
+> Documentação:Está em construção
 
 ## Sobre
 API REST de registro de usuários de uma empresa. Os verbos http disponíveis nessa API são, GET, POST, PUT e DELETE. Essa API fornece 2 dados dos funcionários cadastrados em uma empresa fictícia. Esses dados são, nome e cargo que são retornados do servidor ao cliente no formado JSON. OS status http utilizados nessa aplicação foram, status 200, 201, 204, 400, 404 e 501.
@@ -15,27 +15,27 @@ API REST de registro de usuários de uma empresa. Os verbos http disponíveis ne
   </tr>
   <tr>
     <td>GET</td>
-    <td>http://localhost/users</td>
+    <td>http://localhost/list_users</td>
     <td>Listar todos os usuários</td>
   </tr>
   <tr>
     <td>GET</td>
-    <td>http://localhost/users/{id}</td>
+    <td>http://localhost/get_users_id/{id}</td>
     <td>Fazer a busca específica do usuário</td>
   </tr>
   <tr>
     <td>POST</td>
-    <td>http://localhost/users</td>
+    <td>http://localhost/register_users</td>
     <td>Cadastrar um novo usuário</td>
   </tr>
   <tr>
     <td>PUT</td>
-    <td>http://localhost/users/{id}</td>
+    <td>http://localhost/update_user</td>
     <td>Atualizar os dados do usuário</td>
   </tr>
   <tr>
     <td>DELETE</td>
-    <td>http://localhost/users/{id}</td>
+    <td>http://localhost/delete_users/{id}</td>
     <td>Deletar o usuário</td>
   </tr>
 </table>
