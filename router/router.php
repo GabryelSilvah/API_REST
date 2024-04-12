@@ -31,36 +31,36 @@ class Router
 				case "GET":
 					switch ($uri[2]) {
 						case "list_users":
-							$controller = new list_users;
-							$controller->list();
+							$controller = new Users_controller;
+							$controller->list_users();
 							exit;
 						case "list_user_id":
-							$controller = new Get_users_id;
-							$controller->listById();
+							$controller = new Users_controller;
+							$controller->list_users_byId();
 							exit;
 					}
 					exit;
 				case "POST":
 					switch ($uri[2]) {
 						case "register_users":
-							$controller = new register_users;
-							$controller->register();
+							$controller = new Users_controller;
+							$controller->register_users();
 							exit;
 					}
 					exit;
 				case "PUT":
 					switch ($uri[2]) {
 						case "update_user":
-							$controller = new Update_user;
-							$controller->update();
+							$controller = new Users_controller;
+							$controller->update_users();
 							exit;
 					}
 					exit;
 				case "DELETE":
 					switch ($uri[2]) {
 						case "delete_users":
-							$controller = new Delete_users;
-							$controller->deleted();
+							$controller = new Users_controller;
+							$controller->delete_users();
 							exit;
 					}
 					exit;
