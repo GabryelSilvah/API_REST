@@ -26,7 +26,7 @@ Demostrativo de dados dos funcionário, como, nome, cargo, salário e status de 
   <tr>
     <td>POST</td>
     <td>http://localhost/register_users</td>
-    <td>Cadastrar novo Funcionárioo</td>
+    <td>Cadastrar novo Funcionário</td>
   </tr>
   <tr>
     <td>PUT</td>
