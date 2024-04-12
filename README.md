@@ -1,10 +1,10 @@
-# API REST
-> Status: update
+# API REST - relatório dos funcionário
+> Status: em desenvolvimento
 
-> Documentação:Está em construção
+> Documentação:
 
 ## Sobre
-API REST de registro de usuários de uma empresa. Os verbos http disponíveis nessa API são, GET, POST, PUT e DELETE. Essa API fornece 2 dados dos funcionários cadastrados em uma empresa fictícia. Esses dados são, nome e cargo que são retornados do servidor ao cliente no formado JSON. OS status http utilizados nessa aplicação foram, status 200, 201, 204, 400, 404 e 501.
+Demostrativo de dados dos funcionário, como, nome, cargo, salário e status de presença. Um relatório completo sobre a grade de funcionário, possibilitando cadastro, listagem, alteração e exclusão de dados dos funcionários. Todos esses recursos ficrá disponível ao final do projeto.
 
 
 
