@@ -17,14 +17,14 @@ class Conexao
     {
         try {
             $conexao = new mysqli($this->local, $this->usuario, $this->senha, $this->nomeBanco);
-            
-            return $conexao;
         } catch (Exception $e) {
-            echo "<br>";
-            echo "Mensagem de erro: " . $e->getMessage()."<br><br>";
-            echo "Linha do erro: " . $e->getLine()."<br><br>";
-            echo "Nome do arquivo do erro: " . $e->getFile()."<br><br>";
+            $dataJson["Exception"] = "Erro na conexão com base de dados";
+            $dataJson["erro"]["Mensagem"] = $e->getMessage();
+            $dataJson["erro"]["linha"] = $e->getLine();
+            $dataJson["erro"]["arquivo"] = $e->getFile();
+            echo json_encode($dataJson);
             die;
         }
+        return $conexao;
     }
 }
