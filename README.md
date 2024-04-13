@@ -1,10 +1,10 @@
-# API REST
-> Status: update
+# API REST - relatório dos funcionário
+> Status: em desenvolvimento
 
-> Documentação:Está em construção
+> Documentação:
 
 ## Sobre
-API REST de registro de usuários de uma empresa. Os verbos http disponíveis nessa API são, GET, POST, PUT e DELETE. Essa API fornece 2 dados dos funcionários cadastrados em uma empresa fictícia. Esses dados são, nome e cargo que são retornados do servidor ao cliente no formado JSON. OS status http utilizados nessa aplicação foram, status 200, 201, 204, 400, 404 e 501.
+Demostrativo de dados dos funcionário, como, nome, cargo, salário e status de presença. Um relatório completo sobre a grade de funcionário, possibilitando cadastro, listagem, alteração e exclusão de dados dos funcionários. Todos esses recursos ficrá disponível ao final do projeto.
 
 
 
@@ -16,27 +16,27 @@ API REST de registro de usuários de uma empresa. Os verbos http disponíveis ne
   <tr>
     <td>GET</td>
     <td>http://localhost/list_users</td>
-    <td>Listar todos os usuários</td>
+    <td>Listagem de Funcionários</td>
   </tr>
   <tr>
     <td>GET</td>
     <td>http://localhost/get_users_id/{id}</td>
-    <td>Fazer a busca específica do usuário</td>
+    <td>Pegar funcionário pelo ID</td>
   </tr>
   <tr>
     <td>POST</td>
     <td>http://localhost/register_users</td>
-    <td>Cadastrar um novo usuário</td>
+    <td>Cadastrar novo Funcionário</td>
   </tr>
   <tr>
     <td>PUT</td>
     <td>http://localhost/update_user</td>
-    <td>Atualizar os dados do usuário</td>
+    <td>Atualizar os dados do Funcionário</td>
   </tr>
   <tr>
     <td>DELETE</td>
     <td>http://localhost/delete_users/{id}</td>
-    <td>Deletar o usuário</td>
+    <td>Deletar Funcionário</td>
   </tr>
 </table>
 
