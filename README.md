@@ -26,17 +26,17 @@ Demostrativo de dados dos funcionário, como, nome, cargo, salário e status de 
   <tr>
     <td>POST</td>
     <td>http://localhost/register_users</td>
-    <td>Cadastrar novo Funcionário</td>
+    <td>Cadastra novo Funcionário</td>
   </tr>
   <tr>
     <td>PUT</td>
     <td>http://localhost/update_user</td>
-    <td>Atualizar os dados do Funcionário</td>
+    <td>Atualiza os dados do Funcionário</td>
   </tr>
   <tr>
     <td>DELETE</td>
     <td>http://localhost/delete_users/{id}</td>
-    <td>Deletar Funcionário</td>
+    <td>Deleta Funcionário</td>
   </tr>
 </table>
 
