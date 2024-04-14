@@ -42,7 +42,7 @@ Demostrativo de dados dos funcionário, como, nome, cargo, salário e status de 
 
 ## Modelagem de Dados
 
- <img style="height:400px" src="https://github.com/GabryelSilvah/API_REST/assets/139282381/21a03ff2-fdf4-4eb8-8fbc-dec118a4c6c4">
+ <img style="height:400px" src="https://github.com/GabryelSilvah/API_REST/assets/139282381/20789a25-e2a3-4d14-9663-ad9c10b4919d">
 
 - GET: O GET retorna um JSON com a lista de usuários castrados, com nome e cargo desse funcionário. 
 - POST: Com o POST é possível cadastrar um novo funcionário. 
