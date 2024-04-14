@@ -6,13 +6,12 @@ class Users_model
     //Listagem de de todos os usuários
     public function m_list_users()
     {
-        $con = new Conexao;
-        $con = $con->dbUsers();
+        $dao = new Dao_user;
 
-        $sql = mysqli_query($con, "SELECT*FROM users LIMIT 20");
+        $sql = $dao->listAll();
         $rows = mysqli_num_rows($sql);
 
-        $con->close();
+
         if ($rows >= 1) {
 
             return $sql;
@@ -21,15 +20,13 @@ class Users_model
         }
     }
 
-    public function m_list_users_byId($id_user = null)
+    public function m_list_users_byId($id_func = null)
     {
-        $con = new Conexao;
-        $con = $con->dbUsers();
+        $dao = new Dao_user;
 
-        $sql = mysqli_query($con, "SELECT*FROM users WHERE id_user=$id_user");
+        $sql = $dao->getById($id_func);
         $rows = mysqli_num_rows($sql);
 
-        $con->close();
         if ($rows === 1) {
             return $sql;
         } else {
@@ -38,12 +35,15 @@ class Users_model
         }
     }
 
-    public function m_register_users($nome_user = null)
+    public function m_register_users($nome_func = null)
     {
         $con = new Conexao;
         $con = $con->dbUsers();
 
-        $sql = mysqli_query($con, "SELECT nome_user FROM users WHERE nome_user = '$nome_user'");
+        $dao = new Dao_user;
+
+
+        $sql = mysqli_query($con, "SELECT nome_func FROM funcionarios WHERE nome_func = '$nome_func'");
         $rows = mysqli_num_rows($sql);
 
         if ($rows === 1) {
@@ -51,47 +51,50 @@ class Users_model
             return false;
         } else {
 
-            $sql = mysqli_query($con, "INSERT INTO users (nome_user)VALUES('$nome_user')");
+            $sql = $dao->register($nome_func);
             $con->close();
             return $sql;
         }
     }
 
-    public function m_update_users($id_user = null, $nome_user = null)
+    public function m_update_users(array $data)
     {
-        $con = new Conexao;
-        $con = $con->dbUsers();
+        $dao = new Dao_user;
 
-        $old = mysqli_query($con, "SELECT*FROM users WHERE id_user = $id_user");
-        $old = mysqli_fetch_assoc($old);
-        $sql = mysqli_query($con, "UPDATE users SET nome_user='$nome_user'WHERE id_user =$id_user");
-        $new = mysqli_query($con, "SELECT*FROM users WHERE id_user = $id_user");
-        $new = mysqli_fetch_assoc($new);
+        $sql = $dao->getById($data["id"]);
+        $rows = mysqli_num_rows($sql);
 
-        $con->close();
-        if ($sql === true) {
+        //Validação se id existe na base de dados
+        if ($rows === 1) {
+
+            $old = $dao->getById($data["id"]);
+            $old = mysqli_fetch_assoc($old);
+
+            $sql = $dao->update($data);
+
+            $new = $dao->getById($data["id"]);
+            $new = mysqli_fetch_assoc($new);
+
+
             return $sql = ["old" => $old, "new" => $new];
         } else {
             return false;
+            die;
         }
     }
 
-    public function m_delete_users($id_user = null)
+    public function m_delete_users($id_func = null)
     {
+        $dao = new Dao_user;
 
-        $con = new Conexao;
-        $con = $con->dbUsers();
-
-        $sql = mysqli_query($con, "SELECT*FROM users WHERE id_user = $id_user");
+        $sql = $dao->getById($id_func);
         $rows = mysqli_num_rows($sql);
 
         if ($rows === 1) {
-            $sql = mysqli_query($con, "DELETE FROM users WHERE id_user = $id_user");
+            $sql = $dao->delete($id_func);
 
-            $con->close();
             return $sql;
         } else {
-            $con->close();
             return false;
         }
     }
