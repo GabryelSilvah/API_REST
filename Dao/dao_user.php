@@ -13,6 +13,24 @@ class Dao_user
         return $sql;
     }
 
+    public function listJoin()
+    {
+        $con = new Conexao;
+        $con = $con->dbUsers();
+
+        $sql = mysqli_query($con, "SELECT 
+        id_func, 
+        nome_func,
+        nome_setor
+        FROM funcionarios 
+        INNER JOIN setores
+        ON funcionarios.fk_setores = setores.id_setor
+        LIMIT 20");
+
+        $con->close();
+        return $sql;
+    }
+
     public function getById(int $id_func)
     {
         $con = new Conexao;

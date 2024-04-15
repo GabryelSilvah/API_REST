@@ -20,6 +20,13 @@ class Users_model
         }
     }
 
+    public function m_listAllInfor()
+    {
+        $dao = new Dao_user;
+        $results = $dao->listJoin();
+        return $results;
+    }
+
     public function m_list_users_byId($id_func = null)
     {
         $dao = new Dao_user;

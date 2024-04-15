@@ -29,6 +29,22 @@ class Users_controller
         }
     }
 
+    public function listAllInfor()
+    {
+        $model = new Users_model;
+        $responseModel = $model->m_listAllInfor();
+
+        $dataJson["results"] = array();
+        while ($valor = mysqli_fetch_assoc($responseModel)) {
+
+            array_push($dataJson["results"], $valor);
+        }
+
+
+
+        echo json_encode($dataJson);
+    }
+
 
     //Selecionar um funcionário pelo id
     public function list_users_byId()
@@ -109,13 +125,16 @@ class Users_controller
 
         $dataForm = json_decode(file_get_contents('php://input'));
 
-        $id_user = isset($dataForm->id_user) ? $dataForm->id_user : null;
-        $nome_user = isset($dataForm->nome_user) ? $dataForm->nome_user : null;
+        $id_func = isset($dataForm->id_func) ? $dataForm->id_func : null;
+        $nome_func = isset($dataForm->nome_func) ? $dataForm->nome_func : null;
 
-        if (!empty($id_user) && $id_user != null && !empty($nome_user) && $nome_user != null) {
+        if (!empty($id_func) && $id_func != null && !empty($nome_func) && $nome_func != null) {
 
             $model = new Users_model;
-            $responseModel = $model->m_update_users($id_user, $nome_user);
+
+            $dataFunc["id"] = $id_func;
+            $dataFunc["nome"] = $nome_func;
+            $responseModel = $model->m_update_users($dataFunc);
 
             //Validando resposta da model
             if ($responseModel === false) {
