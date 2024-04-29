@@ -40,8 +40,11 @@ Demostrativo de dados dos funcionário, como, nome, cargo, salário e status de 
   </tr>
 </table>
 
-## Modelagem de Dados
+## Modelagem de Dados - Modelo Lógico
 
- <img style="height:400px" src="https://github.com/GabryelSilvah/API_REST/assets/139282381/20789a25-e2a3-4d14-9663-ad9c10b4919d">
+ <img style="height:400px" src="https://github.com/GabryelSilvah/API_REST/assets/139282381/e376750e-862c-43b5-a336-9206bcf6f4b1">
+
+ ## View
+ <img style="height:400px" src="https://github.com/GabryelSilvah/API_REST/assets/139282381/4cd0b497-4e5f-4a6b-8931-e5a7df179ca5">
 
 
