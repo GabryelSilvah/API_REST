@@ -4,7 +4,7 @@ class Users_controller
 {
 
     //Listar funcionários
-    public function list_users()
+    public function list_func()
     {
 
         $status = new Status;
@@ -12,7 +12,7 @@ class Users_controller
 
         //Instancia a model e utiliza suas funçoes
         $model = new Users_model;
-        $responseModel = $model->m_list_users();
+        $responseModel = $model->m_list_func();
 
         //Valida a resposta recebida da model e envia via json
         if ($responseModel === false) {
@@ -21,6 +21,7 @@ class Users_controller
             echo  json_encode($dataJson);
         } else {
             $dataJson += $status->code_200();
+
             foreach ($responseModel as $list) {
                 array_push($dataJson['results'], $list);
             }
@@ -34,20 +35,14 @@ class Users_controller
         $model = new Users_model;
         $responseModel = $model->m_listAllInfor();
 
-        $dataJson["results"] = array();
-        while ($valor = mysqli_fetch_assoc($responseModel)) {
-
-            array_push($dataJson["results"], $valor);
-        }
-
-
+        $dataJson["results"] =  $responseModel;
 
         echo json_encode($dataJson);
     }
 
 
     //Selecionar um funcionário pelo id
-    public function list_users_byId()
+    public function list_func_byId()
     {
         //Config de variáveis
         $status = new Status;
@@ -60,7 +55,7 @@ class Users_controller
 
             //Instancia a model e utiliza suas funçoes
             $model = new Users_model;
-            $responseModel = $model->m_list_users_byId($id[3]);
+            $responseModel = $model->m_get_func_byId($id[3]);
 
 
             //Valida a resposta recebida da model e envia via json
@@ -69,7 +64,7 @@ class Users_controller
                 $dataJson["details"] = "usuário não encontrado na base de dados";
                 echo json_encode($dataJson);
             } else {
-                $dataJson = mysqli_fetch_assoc($responseModel);
+                $dataJson = $responseModel;
                 echo json_encode($dataJson);
             }
         } else {
@@ -80,7 +75,7 @@ class Users_controller
     }
 
     //Cadastrar novo funcionário no sistema
-    public function register_users()
+    public function register_func()
     {
         $status = new Status;
         $dataJson["results"] = array();
@@ -88,12 +83,23 @@ class Users_controller
         //Recebendo json de cadastro via post
         $dataPost = json_decode(file_get_contents('php://input'));
         $nome = isset($dataPost->nome) ? $dataPost->nome : null;
+        $fk_filial = isset($dataPost->fk_filial) ? $dataPost->fk_filial : null;
+        $fk_setor = isset($dataPost->fk_setor) ? $dataPost->fk_setor : null;
+        $fk_cargo = isset($dataPost->fk_cargo) ? $dataPost->fk_cargo : null;
+        $fk_encarregado = isset($dataPost->fk_encarregado) ? $dataPost->fk_encarregado : null;
+
 
         //Verificar se campos de nome e cargos estão preenchidos
         if (!empty($nome)) {
 
             $model = new Users_model;
-            $responseModel = $model->m_register_users($nome);
+            $responseModel = $model->m_register_func(
+                $nome,
+                $fk_filial,
+                $fk_setor,
+                $fk_cargo,
+                $fk_encarregado
+            );
 
             //Validando cadastro do usuário
             if ($responseModel === true) {
@@ -118,15 +124,18 @@ class Users_controller
 
 
     //Atualizar dados do funcionário
-    public function update_users()
+    public function update_func()
     {
         $status = new Status;
         $dataJson["results"] = array();
 
-        $dataForm = json_decode(file_get_contents('php://input'));
-
-        $id_func = isset($dataForm->id_func) ? $dataForm->id_func : null;
-        $nome_func = isset($dataForm->nome_func) ? $dataForm->nome_func : null;
+        $dataPost = json_decode(file_get_contents('php://input'));
+        $id_func = isset($dataPost->id_func) ? $dataPost->id_func : null;
+        $nome_func = isset($dataPost->nome_func) ? $dataPost->nome_func : null;
+        $fk_filial = isset($dataPost->fk_filial) ? $dataPost->fk_filial : null;
+        $fk_setor = isset($dataPost->fk_setor) ? $dataPost->fk_setor : null;
+        $fk_cargo = isset($dataPost->fk_cargo) ? $dataPost->fk_cargo : null;
+        $fk_encarregado = isset($dataPost->fk_encarregado) ? $dataPost->fk_encarregado : null;
 
         if (!empty($id_func) && $id_func != null && !empty($nome_func) && $nome_func != null) {
 
@@ -134,7 +143,12 @@ class Users_controller
 
             $dataFunc["id"] = $id_func;
             $dataFunc["nome"] = $nome_func;
-            $responseModel = $model->m_update_users($dataFunc);
+            $dataFunc["filial"] = $fk_filial;
+            $dataFunc["setor"] = $fk_setor;
+            $dataFunc["cargo"] = $fk_cargo;
+            $dataFunc["encarregado"] = $fk_encarregado;
+
+            $responseModel = $model->m_update_func($dataFunc);
 
             //Validando resposta da model
             if ($responseModel === false) {
@@ -158,7 +172,7 @@ class Users_controller
 
 
     //Deletar funcionário do sistema
-    public function delete_users()
+    public function delete_func()
     {
         $status = new Status;
         $dataJson["results"] = array();
@@ -168,7 +182,7 @@ class Users_controller
 
         if (isset($getId[3]) && !empty($getId[3])) {
             $model = new Users_model;
-            $responseModel = $model->m_delete_users($getId[3]);
+            $responseModel = $model->m_delete_func($getId[3]);
 
             if ($responseModel === true) {
                 $dataJson += $status->code_200();
@@ -196,5 +210,21 @@ class Users_controller
         $uri = explode("/", $uri["path"]);
 
         return $uri;
+    }
+    public function search()
+    {
+
+
+        $dataQuery = json_decode(file_get_contents("php://input"));
+        $busca = $dataQuery->pesquisa;
+
+        $model = new Users_model;
+        $responseModel = $model->m_search($busca);
+
+        $dataJson["results"] = array();
+
+        $dataJson["results"] = $responseModel;
+
+        echo json_encode($dataJson);
     }
 }

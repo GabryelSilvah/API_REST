@@ -10,14 +10,14 @@ class Conexao
 
     function __construct()
     {
-        $this->dbUsers();
+        $this->conectar();
     }
 
-    function dbUsers()
+    function conectar()
     {
         try {
-            $conexao = new mysqli($this->local, $this->usuario, $this->senha, $this->nomeBanco);
-        } catch (Exception $e) {
+            $conexao = new PDO("mysql:host=$this->local;dbname=$this->nomeBanco",$this->usuario,$this->senha);
+        } catch (PDOException $e) {
             $dataJson["Exception"] = "Erro na conexão com base de dados";
             $dataJson["erro"]["Mensagem"] = $e->getMessage();
             $dataJson["erro"]["linha"] = $e->getLine();
