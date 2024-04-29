@@ -3,12 +3,19 @@ require_once(__DIR__ . "/app/config/db_config.php");
 require_once(__DIR__ . "/router/router.php");
 require_once(__DIR__ . "/app/config/status.php");
 require_once(__DIR__ . "/autoload/autoload.php");
-require_once(__DIR__ . "/Dao/dao_user.php");
+require_once(__DIR__ . "/app/Dao/dao_user.php");
+require_once(__DIR__ . "/app/Dao/dao_stock.php");
+require_once(__DIR__."/app/config/constantes.php");
 
 //Controller
 
 
 //mb_convert_encoding
+
+// putenv("TEST=dddd");
+
+// echo"<pre>";
+// var_dump(getenv("TEST"));
 
 //Cors 
 header("Access-Control-Allow-Origin: ".dns_front);
