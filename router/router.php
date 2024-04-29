@@ -30,37 +30,54 @@ class Router
 			switch ($request) {
 				case "GET":
 					switch ($uri[2]) {
-						case "list_users":
+						case "list_all_func":
 							$controller = new Users_controller;
-							$controller->list_users();
+							$controller->list_func();
 							exit;
-						case "list_user_id":
+						case "list_inner_func":
 							$controller = new Users_controller;
-							$controller->list_users_byId();
+							$controller->listAllInfor();
+							exit;
+						case "get_by_id":
+							$controller = new Users_controller;
+							$controller->list_func_byId();
+							exit;
+						case "list_products":
+							$controller = new Stock_controller;
+							$controller->list_products();
 							exit;
 					}
 					exit;
 				case "POST":
 					switch ($uri[2]) {
-						case "register_users":
+						case "search_func":
+
 							$controller = new Users_controller;
-							$controller->register_users();
+							$controller->search();
+							exit;
+						case "register_func":
+							$controller = new Users_controller;
+							$controller->register_func();
+							exit;
+						case "register_products":
+							$controller = new Stock_controller;
+							$controller->register_products();
 							exit;
 					}
 					exit;
 				case "PUT":
 					switch ($uri[2]) {
-						case "update_user":
+						case "update_func":
 							$controller = new Users_controller;
-							$controller->update_users();
+							$controller->update_func();
 							exit;
 					}
 					exit;
 				case "DELETE":
 					switch ($uri[2]) {
-						case "delete_users":
+						case "delete_func":
 							$controller = new Users_controller;
-							$controller->delete_users();
+							$controller->delete_func();
 							exit;
 					}
 					exit;
