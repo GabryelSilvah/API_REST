@@ -126,7 +126,7 @@ class Dao_user
 
         $sql = $con->prepare($sql);
         $sql->bindParam("id", $id_func);
-        $sql->execute();
+        $sql = $sql->execute();
 
         return $sql;
     }

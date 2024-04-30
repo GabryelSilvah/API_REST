@@ -29,7 +29,7 @@ class Dao_stock
 
         //Código SQL 
         $sql = "SELECT 
-                img_prod,nome_prod,quant_uni_prod,
+                id_prod,img_prod,nome_prod,quant_uni_prod,
                 nome_categoria
                 FROM  
                 estoque_produtos
@@ -44,7 +44,7 @@ class Dao_stock
         return $sql;
     }
 
-    public function get_product_by_id(string $nome_prod)
+    public function get_product_by_name(string $nome_prod)
     {
         //Instância da conexão
         $con = new Conexao;
@@ -58,6 +58,46 @@ class Dao_stock
         //Prepara código SQL antes da execução
         $sql = $con->prepare($sql);
         $sql->bindParam("nome", $nome_prod);
+        $sql->execute();
+
+        return $sql;
+    }
+
+    public function get_product_by_id(int $id)
+    {
+        //Instância da conexão
+        $con = new Conexao;
+        $con = $con->conectar();
+
+        //Código SQL 
+        $sql = ("SELECT*FROM estoque_produtos 
+           WHERE id_prod = :id 
+           LIMIT 20");
+
+        //Prepara código SQL antes da execução
+        $sql = $con->prepare($sql);
+        $sql->bindParam("id", $id);
+        $sql->execute();
+
+        return $sql;
+    }
+
+    //Detalhes
+    public function getDetalhes(int $id)
+    {
+        //Instância da conexão
+        $con = new Conexao;
+        $con = $con->conectar();
+
+        $sql = "SELECT id_prod,img_prod,codigo_externo_det, fabricante_det, validade_det, preco_varejo_det, preco_atacado_det, fk_endereco 
+                FROM detalhes_prod
+                LEFT JOIN estoque_produtos 
+                ON estoque_produtos.fk_detalhe = detalhes_prod.id_detalhe
+                WHERE id_prod = :id
+        ";
+
+        $sql = $con->prepare($sql);
+        $sql->bindParam("id", $id);
         $sql->execute();
 
         return $sql;
@@ -125,27 +165,28 @@ class Dao_stock
         $sql->bindParam("quant", $quant_prod);
         $sql->bindParam("categoria", $categoria);
         $sql->bindParam("id", $id);
-        $sql->execute();
+        $sql = $sql->execute();
 
         return $sql;
     }
 
     public function delete(int $id)
     {
+
         //Instância da conexão
         $con = new Conexao;
         $con = $con->conectar();
 
         //Código SQL 
-        $sql = "DELETE 
-                 estoque_prod
+        $sql = "DELETE FROM
+                 estoque_produtos
                  WHERE
                  id_prod = :id";
 
         //Prepara código SQL antes da execução
         $sql = $con->prepare($sql);
         $sql->bindParam("id", $id);
-        $sql->execute();
+        $sql = $sql->execute();
 
         return $sql;
     }
