@@ -8,12 +8,32 @@ class Dao_user
         $con = new Conexao;
         $con = $con->conectar();
 
-        $sql = "SELECT*FROM funcionarios LIMIT 20";
+        $sql = "SELECT*FROM funcionarios LIMIT 30";
         $sql = $con->prepare($sql);
         $sql->execute();
 
         return $sql;
     }
+
+    public function list_atribuicoes()
+    {
+        $con = new Conexao;
+        $con = $con->conectar();
+
+        $sql = "SELECT 
+        id_filial, nome_filial,
+        id_setor, nome_setor,
+        id_cargo, nome_cargo,
+        id_encarregado, nome_encarregado
+        FROM filiais,setores,cargos,encarregados  
+        ";
+
+        $sql = $con->prepare($sql);
+        $sql->execute();
+
+        return $sql;
+    }
+
 
     #selecionar funcinarios inner join
     public function listJoin()
@@ -22,7 +42,7 @@ class Dao_user
         $con = $con->conectar();
 
         $sql =
-            "SELECT nome_func,nome_filial,nome_setor,nome_cargo, nome_encarregado
+            "SELECT id_func,nome_func,nome_filial,nome_setor,nome_cargo, nome_encarregado
             FROM funcionarios 
             INNER JOIN filiais
             ON filiais.id_filial = funcionarios.fk_filial
@@ -44,7 +64,7 @@ class Dao_user
         $con = new Conexao;
         $con = $con->conectar();
 
-        $sql = "SELECT nome_func,nome_filial,nome_setor,nome_cargo, nome_encarregado
+        $sql = "SELECT id_filial,id_setor,id_cargo,id_encarregado,nome_func,nome_filial,nome_setor,nome_cargo, nome_encarregado
                 FROM funcionarios 
                 INNER JOIN filiais
                 ON filiais.id_filial = funcionarios.fk_filial

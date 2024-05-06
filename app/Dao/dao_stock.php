@@ -20,6 +20,24 @@ class Dao_stock
         return $sql;
     }
 
+    //Listagem de Categorias
+    public function list_categories()
+    {
+        //Instância da conexão
+        $con = new Conexao;
+        $con = $con->conectar();
+
+        //Código SQL 
+        $sql = ("SELECT*FROM categorias_prod LIMIT 20");
+
+        //Prepara código SQL antes da execução
+        $sql = $con->prepare($sql);
+        $sql->execute();
+
+        return $sql;
+    }
+
+
     #selecionar produtos inner join
     public function listJoin()
     {
@@ -89,10 +107,16 @@ class Dao_stock
         $con = new Conexao;
         $con = $con->conectar();
 
-        $sql = "SELECT id_prod,img_prod,codigo_externo_det, fabricante_det, validade_det, preco_varejo_det, preco_atacado_det, fk_endereco 
+        $sql = "SELECT 
+        id_prod,img_prod,codigo_externo_det, 
+        fabricante_det, 
+        validade_det, 
+        preco_varejo_det, 
+        preco_atacado_det,
+        fk_endereco 
                 FROM detalhes_prod
                 LEFT JOIN estoque_produtos 
-                ON estoque_produtos.fk_detalhe = detalhes_prod.id_detalhe
+                ON estoque_produtos.id_prod = detalhes_prod.fk_produto
                 WHERE id_prod = :id
         ";
 
@@ -110,7 +134,11 @@ class Dao_stock
         string $nome_prod,
         int $quant_prod,
         int $categoria,
-        int  $detalhes
+        int $codigo_externo,
+        string  $fabricante_det,
+        string $validade_det,
+        float  $preco_varejo_det,
+        float $preco_atacado_det
     ) {
 
         //Instância da conexão
@@ -120,9 +148,9 @@ class Dao_stock
         //Código SQL 
         $sql = "INSERT INTO 
                 estoque_produtos
-                (img_prod,nome_prod,quant_uni_prod,fk_categoria,fk_detalhe)
+                (img_prod,nome_prod,quant_uni_prod,fk_categoria)
                 VALUES
-                (:img,:nome,:quant,:categoria,:detalhes)";
+                (:img,:nome,:quant,:categoria)";
 
         //Prepara código SQL antes da execução
         $sql = $con->prepare($sql);
@@ -130,7 +158,40 @@ class Dao_stock
         $sql->bindParam("nome", $nome_prod);
         $sql->bindParam("quant", $quant_prod);
         $sql->bindParam("categoria", $categoria);
-        $sql->bindParam("detalhes", $detalhes);
+        $sql = $sql->execute();
+
+
+        //tabela detalhes
+        $sql = "INSERT INTO detalhes_prod(
+                codigo_externo_det, 
+                fabricante_det, 
+                validade_det, 
+                preco_varejo_det, 
+                preco_atacado_det,
+                fk_produto)
+                VALUES
+                (:externo,:fabricante,:validade,:preco_varejo,:preco_atacado,:fk)";
+
+        //pegando produto
+        $sql2 = "SELECT id_prod 
+                FROM estoque_produtos 
+                WHERE nome_prod = :nome";
+
+        $sql2 = $con->prepare($sql2);
+        $sql2->bindParam("nome", $nome_prod);
+        $sql2->execute();
+
+        $id = $sql2->fetch(PDO::FETCH_ASSOC);
+        $id  = $id["id_prod"];
+
+        //Prepara código SQL antes da execução
+        $sql = $con->prepare($sql);
+        $sql->bindParam("externo", $codigo_externo);
+        $sql->bindParam("fabricante", $fabricante_det);
+        $sql->bindParam("validade", $validade_det);
+        $sql->bindParam("preco_varejo", $preco_varejo_det);
+        $sql->bindParam("preco_atacado", $preco_atacado_det);
+        $sql->bindParam("fk", $id);
         $sql = $sql->execute();
 
         return $sql;
@@ -165,7 +226,7 @@ class Dao_stock
         $sql->bindParam("quant", $quant_prod);
         $sql->bindParam("categoria", $categoria);
         $sql->bindParam("id", $id);
-        $sql = $sql->execute();
+        $sql->execute();
 
         return $sql;
     }

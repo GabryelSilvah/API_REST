@@ -46,6 +46,19 @@ class Router
 							$controller = new Stock_controller;
 							$controller->list_products();
 							exit;
+						case "details_products":
+							$controller = new Stock_controller;
+							$controller->details_products();
+							exit;
+						case "list_categories":
+							$controller = new Stock_controller;
+							$controller->list_categories();
+							exit;
+						case "list_atribuicoes":
+							$controller = new Users_controller;
+							$controller->list_atribuicoes();
+							exit;
+						
 					}
 					exit;
 				case "POST":
@@ -71,6 +84,10 @@ class Router
 							$controller = new Users_controller;
 							$controller->update_func();
 							exit;
+						case "update_product":
+							$controller = new Stock_controller;
+							$controller->update_products();
+							exit;
 					}
 					exit;
 				case "DELETE":
@@ -78,6 +95,10 @@ class Router
 						case "delete_func":
 							$controller = new Users_controller;
 							$controller->delete_func();
+							exit;
+						case "delete_products":
+							$controller = new Stock_controller;
+							$controller->delete_products();
 							exit;
 					}
 					exit;

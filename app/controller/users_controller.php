@@ -30,6 +30,35 @@ class Users_controller
         }
     }
 
+
+    //Listar funcionários
+    public function list_atribuicoes()
+    {
+
+        $status = new Status;
+        $dataJson["results"] = array();
+
+        //Instancia a model e utiliza suas funçoes
+        $model = new Users_model;
+        $responseModel = $model->list_atribuicoes();
+
+        //Valida a resposta recebida da model e envia via json
+        if ($responseModel === false) {
+            $dataJson += $status->code_404();
+            $dataJson["details"] = "Base de dados vazia";
+            echo  json_encode($dataJson);
+        } else {
+            $dataJson += $status->code_200();
+
+            foreach ($responseModel as $list) {
+                array_push($dataJson['results'], $list);
+            }
+
+            echo json_encode($dataJson);
+        }
+    }
+
+
     public function listAllInfor()
     {
         $model = new Users_model;
@@ -104,6 +133,7 @@ class Users_controller
             //Validando cadastro do usuário
             if ($responseModel === true) {
                 $dataJson += $status->code_201();
+                $dataJson["confirm"] = true;
                 $dataJson['details'] = "Usuário cadastrado com sucesso";
                 echo  json_encode($dataJson);
             } else {
@@ -174,15 +204,18 @@ class Users_controller
     //Deletar funcionário do sistema
     public function delete_func()
     {
+        //Pegando id do usuário que será deletado
+
+
         $status = new Status;
         $dataJson["results"] = array();
 
-        //Pegando id do usuário que será deletado
-        $getId = $this->getUri();
+        $dataForm = json_decode(file_get_contents("php://input"));
+        $id = isset($dataForm->id_func) ? $dataForm->id_func : null;
 
-        if (isset($getId[3]) && !empty($getId[3])) {
+        if (!empty($id)) {
             $model = new Users_model;
-            $responseModel = $model->m_delete_func($getId[3]);
+            $responseModel = $model->m_delete_func($id);
 
             if ($responseModel === true) {
                 $dataJson += $status->code_200();

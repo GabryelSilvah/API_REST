@@ -28,6 +28,23 @@ class Users_model
         }
     }
 
+
+
+    public function list_atribuicoes()
+    {
+        //Instância da DAO
+        $dao = new Dao_user;
+        $sql = $dao->list_atribuicoes();
+
+        $response = array();
+
+        while ($valor = $sql->fetch(PDO::FETCH_ASSOC)) {
+            array_push($response, $valor);
+        }
+
+        return $response;
+    }
+
     //Pesquisar todas as informações do funcionários
     public function m_listAllInfor()
     {
@@ -98,15 +115,13 @@ class Users_model
         } else {
 
             //Passando dados via parametro para função DAO
-            $sql = $dao->register(
+            $response = $dao->register(
                 $nome_func,
                 $fk_filial,
                 $fk_setor,
                 $fk_cargo,
                 $fk_encarregado
             );
-
-            $response =  $sql->execute();
 
             return $response;
         }
@@ -144,17 +159,16 @@ class Users_model
 
     public function m_delete_func($id_func = null)
     {
+        
         $dao = new Dao_user;
 
         $sql = $dao->getById($id_func);
         
-
         $rows = $sql->rowCount();
 
         if ($rows === 1) {
-            $sql = $dao->delete($id_func);
-           
-            $response = $sql->fetch(PDO::FETCH_ASSOC);
+
+            $response = $dao->delete($id_func);
 
             return $response;
         } else {
