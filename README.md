@@ -4,7 +4,7 @@
 > Documentação:
 
 ## Sobre
-Demostrativo de dados dos funcionário, como, nome, cargo, salário e status de presença. Um relatório completo sobre a grade de funcionário, possibilitando cadastro, listagem, alteração e exclusão de dados dos funcionários. Todos esses recursos ficrá disponível ao final do projeto.
+Sistema ERP para gestão empresarial de pequenas empresa. O sistema em sua fase completa, entrega funcionalidades de gestão de estoque, recursos humanos, finanças, compras e dashboard de estatísticas.
 
 
 
