@@ -15,28 +15,28 @@ Sistema ERP para gestão empresarial de pequenas empresa. O sistema em sua fase 
   </tr>
   <tr>
     <td>GET</td>
-    <td>http://localhost/list_users</td>
-    <td>Lista todos os funcionários</td>
+    <td>http://localhost:8007/api_funcionarios/list_products</td>
+    <td>Listar produtos</td>
   </tr>
   <tr>
     <td>GET</td>
-    <td>http://localhost/get_users_id/{id}</td>
-    <td>Exibe funcionário específico</td>
+    <td>http://localhost:8007/api_funcionarios/details_products/{id_produto}</td>
+    <td>Exibir detalhes do produto</td>
   </tr>
   <tr>
     <td>POST</td>
-    <td>http://localhost/register_users</td>
-    <td>Cadastra novo Funcionário</td>
+    <td>http://localhost:8007/api_funcionarios/register_products</td>
+    <td>Cadastrar novo produto</td>
   </tr>
   <tr>
     <td>PUT</td>
-    <td>http://localhost/update_user</td>
-    <td>Atualiza os dados do Funcionário</td>
+    <td>http://localhost:8007/api_funcionarios/update_product</td>
+    <td>Atualizar informações do produto</td>
   </tr>
   <tr>
     <td>DELETE</td>
-    <td>http://localhost/delete_users/{id}</td>
-    <td>Deleta Funcionário</td>
+    <td>http://localhost:8007/api_funcionarios/delete_products/{id_produto}</td>
+    <td>Deletar produto</td>
   </tr>
 </table>
 
