@@ -8,7 +8,7 @@ Sistema ERP para gestão empresarial de pequenas empresa. O sistema em sua fase 
 
 
 
-## Request
+## Endpoint do controle de estoque
 <table>
   <tr>
     <th>Verbos</th><th>Rotas</th><th>Request</th>
