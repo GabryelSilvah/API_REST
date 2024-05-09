@@ -46,5 +46,6 @@ Demostrativo de dados dos funcionário, como, nome, cargo, salário e status de 
 
  ## View
  <img style="height:400px" src="https://github.com/GabryelSilvah/API_REST/assets/139282381/a316dbfe-02f5-4a9f-ad1b-f66e649f88a6">
+  <img style="height:400px" src="https://github.com/GabryelSilvah/API_REST/assets/139282381/341739b3-5a7e-406f-a8b4-742246b2f07b">
 
 
